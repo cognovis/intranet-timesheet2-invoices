@@ -135,7 +135,7 @@ BEGIN
 end;' language 'plpgsql';
 
 
-    -- Delete a single invoice (if we know its ID...)
+-- Delete a single invoice (if we know its ID...)
 create or replace function  im_timesheet_invoice__delete (integer)
 returns integer as '
 DECLARE
@@ -162,7 +162,7 @@ BEGIN
 		select distinct
 			t.project_id
 		from
-			im_timesheet_tasks t
+			im_timesheet_tasks_view t
 		where
 			t.invoice_id = p_invoice_id
 	);
@@ -250,13 +250,12 @@ create table im_timesheet_prices (
 );
 
 -- make sure the same price doesn't get defined twice 
-create unique index im_price_idx on im_timesheet_prices (
+create unique index im_timesheet_price_idx on im_timesheet_prices (
 	uom_id, company_id, task_type_id, material_id, currency
 );
 
 
 ------------------------------------------------------
--- Views to Business Objects
 --
 
 -- Calculate a match value between a price list item and an invoice_item
