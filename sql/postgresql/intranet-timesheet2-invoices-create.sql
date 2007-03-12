@@ -448,7 +448,7 @@ begin
 	''invoices_timesheet_new_quote'',	-- label
 	''New Quote from Timesheet Tasks'',	-- name
 	''/intranet-timesheet2-invoices/invoices/new?target_cost_type_id=3702'',   -- url
-	130,					-- sort_order
+	40,					-- sort_order
 	v_invoices_new_menu,			-- parent_menu_id
 	null					-- visible_tcl
     );
@@ -468,7 +468,7 @@ begin
 	''invoices_timesheet_new_cust_invoice'',-- label
 	''New Customer Invoice from Timesheet Tasks'',	-- name
 	''/intranet-timesheet2-invoices/invoices/new?target_cost_type_id=3700'',     -- url
-	330,					-- sort_order
+	50,					-- sort_order
 	v_invoices_new_menu,			-- parent_menu_id
 	null					-- visible_tcl
     );

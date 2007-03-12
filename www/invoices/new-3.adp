@@ -88,6 +88,9 @@
 	    #intranet-timesheet2-invoices.Recipient#
 	  </td>
 	</tr>
+
+
+        <tr><td align=center valign=top class=rowtitle colspan=2>#intranet-invoices.Recipient#</td></tr>
         <tr>
           <td  class=rowodd>#intranet-invoices.Company_name#</td>
           <td  class=rowodd>

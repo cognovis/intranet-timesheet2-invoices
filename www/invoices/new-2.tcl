@@ -247,25 +247,15 @@ if {![string equal "" $task_table_rows]} {
     append task_table "<tr><td colspan=$colspan align=center>[lang::message::lookup "" intranet-timesheet2-invoices.No_tasks_found "No tasks found"]</td></tr>"
 }
 
-# ---------------------------------------------------------------
-# Aggregate or not?
-# ---------------------------------------------------------------
-
-set aggregate_html "
+set deselect_button_html "
     <tr><td colspan=7 align=right>
-
-      <input type=checkbox name=aggregate_tasks_p value=1 checked>
-      [lang::message::lookup "" intranet-timesheet2-invoices.Aggregate_tasks_of_the_same_material "Aggregate tasks of the same Material"]
-
       <input type=submit name=submit value='[lang::message::lookup "" intranet-timesheet2-invoices.lt_Select_Tasks_for_Invo "Select Tasks for Invoicing"]'>
-
     </td></tr>
     <tr><td>&nbsp;</td></tr>
 "
 
-
 # ---------------------------------------------------------------
-# Join all parts together
+# 10. Join all parts together
 # ---------------------------------------------------------------
 
 set page_body "
@@ -277,7 +267,7 @@ set page_body "
   <!-- the list of tasks (invoicable items) -->
   <table cellpadding=2 cellspacing=2 border=0>
     $task_table
-    $aggregate_html
+    $deselect_button_html
   </table>
 
 </form>
