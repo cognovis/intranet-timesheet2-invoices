@@ -24,6 +24,7 @@ set context_bar [im_context_bar [list "/intranet/cusomers/" "<#_ Clients#>"] "<#
 # number_of_bytes is the upper-limit
 set max_n_bytes [ad_parameter -package_id [im_package_filestorage_id] MaxNumberOfBytes "" 0]
 set tmp_filename [ns_queryget upload_file.tmpfile]
+im_security_alert_check_tmpnam -location "upload-prices-2.tcl" -value $tmp_filename
 if { $max_n_bytes && ([file size $tmp_filename] > $max_n_bytes) } {
     ad_return_complaint 1 "<#_ Your file is larger than the maximum permissible upload size#>:  [util_commify_number $max_n_bytes] bytes"
     return
@@ -142,7 +143,7 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
        price_id, uom_id, company_id, task_type_id, material_id,
        valid_from, valid_through, currency, price
     ) VALUES (
-       im_timesheet_prices_seq.nextval, :uom_id, :company_id, :task_type_id, :material_id,
+       nextval('im_timesheet_prices_seq'), :uom_id, :company_id, :task_type_id, :material_id,
        :valid_from, :valid_through, :currency, :price
     )"
 
