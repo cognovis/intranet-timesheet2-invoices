@@ -147,8 +147,16 @@ if {[llength $contact_ids] > 0} {
 } else {
     set company_contact_id ""
 }
+
+if {![exists_and_not_null company_contact_id]} {
+    set company_contact_id $accounting_contact_id
+}
 if {"" == $company_contact_id} { set company_contact_id $accounting_contact_id }
 if {"" == $company_contact_id} { set company_contact_id $primary_contact_id }
+
+if {$company_contact_id eq ""} {
+    set company_contact_id $primary_contact_id
+}
 
 db_1row accounting_contact_info "
     select
@@ -551,6 +559,9 @@ order by
 	  </td>
 	"
 
+	# Catch the case that there is no materials yet.
+	if {"" == $material_id} { set material_id [im_material_default_material_id] }
+	
 	if {$material_enabled_p} {
 	    append task_sum_html "<td>[im_material_select item_material_id.$ctr $material_id]</td>"
 	} else {
