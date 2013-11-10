@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="intranet-timesheet2-invoices" package_version="3.4.0.7.0" locale="en_US" charset="ISO-8859-1">
+<message_catalog package_key="intranet-timesheet2-invoices" locale="en_US" charset="ISO-8859-1">
 
   <msg key="Accounting_Contact">Accounting Contact</msg>
   <msg key="Add_New">Add New</msg>
@@ -85,6 +85,7 @@
   <msg key="Next_Page">Next Page</msg>
   <msg key="No">No</msg>
   <msg key="No_company_found">No company found</msg>
+  <msg key="No_Information">No information about task available, pls. try other view</msg>
   <msg key="No_prices_found">No prices found</msg>
   <msg key="No_tasks_found">No tasks found</msg>
   <msg key="No_Trans_Tasks">No Translation Tasks have been found for this project.</msg>
