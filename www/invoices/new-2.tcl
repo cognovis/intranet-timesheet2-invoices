@@ -215,3 +215,9 @@ set task_table_rows [im_timesheet_invoicing_project_hierarchy \
 			 -task_status_id $task_status_id
 ]
 
+set aggregate_tasks_p [parameter::get_from_package_key -package_key "intranet-timesheet2-invoices" -parameter "AggregateTasksP" -default 1]
+if {$aggregate_tasks_p} {
+    set aggregate_checkbox_html "<input type=checkbox name=aggregate_tasks_p value=1 checked>"
+} else {
+    set aggregate_checkbox_html "<input type=checkbox name=aggregate_tasks_p value=1>"
+}

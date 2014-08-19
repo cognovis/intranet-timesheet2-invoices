@@ -9,13 +9,13 @@
     <singleton-p>t</singleton-p>
     <auto-mount>intranet-timesheet2-invoices</auto-mount>
 
-    <version name="4.1.0.0.0" url="http://www.project-open.org/download/apm/intranet-timesheet2-invoices-4.1.0.0.0.apm">
+    <version name="4.1.0.0.1" url="http://www.project-open.org/download/apm/intranet-timesheet2-invoices-4.1.0.0.1.apm">
 
         <owner url="mailto:frank.bergmann@project-open.com">Frank Bergmann</owner>
         <vendor url="http://www.project-open.com/">]project-open[</vendor>
 
-        <provides url="intranet-timesheet2-invoices" version="3.4.0.2.0"/>
-        <requires url="intranet-core" version="3.4.0.0.0"/>
+        <provides url="intranet-timesheet2-invoices" version="4.1.0.0.1"/>
+        <requires url="intranet-core" version="4.1.0.0.0"/>
         <requires url="intranet-timesheet2" version="3.4.0.0.0"/>
         <requires url="intranet-timesheet2-tasks" version="3.4.0.0.0"/>
         <requires url="intranet-invoices" version="3.4.0.0.0"/>
@@ -23,7 +23,7 @@
         <callbacks>
         </callbacks>
         <parameters>
-        <!-- No version parameters -->
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="AggregateTasksP"  default="1" description="Should tasks be aggregated by default?"/>
         </parameters>
     </version>
 </package>
