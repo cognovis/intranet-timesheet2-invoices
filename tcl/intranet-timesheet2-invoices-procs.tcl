@@ -42,30 +42,31 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Rate]</td>
 	  <td class=rowtitle>[im_gif del "Delete"]</td>
 </tr>"
-
     set price_sql "
 select
 	p.*,
-	c.company_path as company_short_name,
 	im_category_from_id(uom_id) as uom,
-	im_category_from_id(task_type_id) as task_type,
-	im_material_nr_id(material_id) as material
+	im_category_from_id(p.task_type_id) as task_type,
+        material_name,
+        im_category_from_id(material_type_id) as material_type
 from
 	im_timesheet_prices p,
-	im_companies c
+        im_materials m
 where 
 	p.company_id=:company_id
-	and p.company_id=c.company_id(+)
+        and m.material_id = p.material_id
 order by
 	currency,
 	uom_id,
-	task_type_id desc
+	p.task_type_id desc,
+        material_type_id,
+        material_name
 "
 
     set price_rows_html ""
     set ctr 1
     set old_currency ""
-    db_foreach prices $price_sql {
+    db_foreach timesheet_prices $price_sql {
 
 	if {"" != $old_currency && ![string equal $old_currency $currency]} {
 	    append price_rows_html "<tr><td colspan=$colspan>&nbsp;</td></tr>\n"
@@ -76,7 +77,7 @@ order by
         <tr $bgcolor([expr $ctr % 2]) nobreak>
 	  <td>$uom</td>
 	  <td>$task_type</td>
-	  <td>$material</td>
+	  <td>$material_name (<font size=-2>$material_type</font>)</td>
           <td><a href='$edit_url'>[format $price_format $price] $currency</a></td>
           <td><input type=checkbox name=price_id.$price_id></td>
 	</tr>"
