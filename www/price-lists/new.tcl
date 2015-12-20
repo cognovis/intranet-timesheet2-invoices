@@ -72,7 +72,7 @@ ad_form \
 	{uom_id:text(select) {label "[_ intranet-timesheet2-invoices.Unit_of_Measure]"} {options $uom_options} }
 	{task_type_id:text(im_category_tree),optional {label "[_ intranet-timesheet2-invoices.Task_Type]"} {custom {category_type "Intranet Project Type" translate_p 1 include_empty_p 1}} }
 	{material_id:text(select),optional {label "[_ intranet-timesheet2-invoices.Material]"} {options $material_options} }
-	{amount:text(text) {label "[_ intranet-timesheet2-invoices.Amount]"} {html {size 10}}}
+	{price:text(text) {label "[_ intranet-timesheet2-invoices.Amount]"} {html {size 10}}}
 	{currency:text(select) {label "[_ intranet-timesheet2-invoices.Currency]"} {options $currency_options} }
     }
 
@@ -104,19 +104,19 @@ insert into im_timesheet_prices (
 	:task_type_id,
 	:material_id,
 	:currency,
-	:amount
+	:price
 )"
 
 } -edit_data {
 
     db_dml price_update "
-	update im_prices set
-	        package_name    = :package_name,
-	        label           = :label,
-	        name            = :name,
-	        url             = :url,
-	        sort_order      = :sort_order,
-	        parent_price_id  = :parent_price_id
+	update im_timesheet_prices set
+	        uom_id           = :uom_id,
+	        company_id            = :company_id,
+	        task_type_id = :task_type_id,
+	        material_id = :material_id,
+	        currency  = :currency,
+                price     = :price
 	where
 		price_id = :price_id
 "

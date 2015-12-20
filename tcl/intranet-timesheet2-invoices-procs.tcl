@@ -71,12 +71,13 @@ order by
 	    append price_rows_html "<tr><td colspan=$colspan>&nbsp;</td></tr>\n"
 	}
 
+        set edit_url [export_vars -base "/intranet-timesheet2-invoices/price-lists/new" -url {price_id company_id return_url}]
 	append price_rows_html "
         <tr $bgcolor([expr $ctr % 2]) nobreak>
 	  <td>$uom</td>
 	  <td>$task_type</td>
 	  <td>$material</td>
-          <td>[format $price_format $price] $currency</td>
+          <td><a href='$edit_url'>[format $price_format $price] $currency</a></td>
           <td><input type=checkbox name=price_id.$price_id></td>
 	</tr>"
 	incr ctr
