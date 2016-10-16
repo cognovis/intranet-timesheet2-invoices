@@ -110,6 +110,7 @@ order by
   <li>
     [_ intranet-timesheet2-invoices.lt_Check_this_sample_pra]
     [_ intranet-timesheet2-invoices.lt_It_contains_some_comm]
+  <li><a href=/intranet-timesheet2-invoices/price-lists/download-prices?company_id=$company_id>Download Pricelist for this company</a>
 </ul>\n
 "
     return $price_list_html
